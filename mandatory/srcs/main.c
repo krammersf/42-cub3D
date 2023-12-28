@@ -6,13 +6,13 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 09:33:20 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 22:41:14 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/28 22:54:16 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int ac, char **av)//OLA
+int	main(int ac, char **av)
 {
 	t_mlx	mlx;
 	t_game	game;

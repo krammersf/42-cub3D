@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:05:09 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 22:53:11 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/28 22:58:43 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,22 +242,35 @@ void	render_frames_2(t_game *game, int *x)
 		game->side_dist_y = (game->map_y + 1.0 - game->pos_y) * \
 			game->delta_dist_y;
 	}
-	if (game->map_x && game->map_y)
+	if (game->map_x != 0 && game->map_y != 0)
 		check_hit(game);
 	calculate_walls(game);
 	draw_walls(game, x);
 }
 /*
-The provided code is a function named `render_frames_2` written in C. It takes two arguments: a pointer to a `t_game` structure and a pointer to an integer `x`. This function appears to be part of a 3D game engine, specifically a part of the raycasting process that calculates the properties of each vertical strip (or "column") of the screen that needs to be drawn.
+It takes two arguments: a pointer to a `t_game` structure and a pointer to an
+integer `x`. This function is part of a 3D game engine, specifically a part of
+the raycasting process that calculates the properties of each vertical strip
+(or "wall") of the screen that needs to be drawn.
 
-The function starts by checking if `game->ray_dir_y` is less than 0, which means the ray is moving upwards on the map. If it is, the function sets `game->step_y` to -1 and calculates `game->side_dist_y` as the distance from the current position to the next horizontal grid line above the current position. If `game->ray_dir_y` is not less than 0, which means the ray is moving downwards on the map, the function sets `game->step_y` to 1 and calculates `game->side_dist_y` as the distance from the current position to the next horizontal grid line below the current position. The `game->delta_dist_y` value is used to scale these distances based on the direction of the ray.
+The function starts by checking if `game->ray_dir_y` is less than 0, which means
+the ray is moving upwards on the map. If it is, the function sets `game->step_y`
+to -1 and calculates `game->side_dist_y` as the distance from the current
+position to the next horizontal grid line above the current position. If
+`game->ray_dir_y` is not less than 0, which means the ray is moving downwards on
+the map, the function sets `game->step_y` to 1 and calculates `game->side_dist_y`
+as the distance from the current position to the next horizontal grid line below
+the current position. The `game->delta_dist_y` value is used to scale these
+distances based on the direction of the ray.
 
-The function then checks if `game->map_x` and `game->map_y` are both non-zero. If they are, the function calls `check_hit(game)`, which presumably checks if the ray has hit a wall on the map. This is not shown in the provided code, but it's a common step in the raycasting process.
+The function then checks if `game->map_x` and `game->map_y` are both non-zero.
+If they are, the function calls `check_hit(game)`, which checks if the ray has
+hit a wall on the map. It's a common step in the raycasting process.
 
-The function then calls `calculate_walls(game)`, which presumably calculates the properties of the wall that was hit by the ray, such as the exact hit point and the distance to the wall. This is also not shown in the provided code, but it's another common step in the raycasting process.
+The function then calls `calculate_walls(game)`, which calculates the properties
+of the wall that was hit by the ray, such as the exact hit point and the distance
+to the wall. It's another common step in the raycasting process.
 
-Finally, the function calls `draw_cols(game, x)`, which draws a vertical strip of the screen based on the properties of the wall that was hit by the ray. This function was explained in a previous step.
+Finally, the function calls `draw_cols(game, x)`, which draws a vertical strip
+of the screen based on the properties of the wall that was hit by the ray.
 */
-
-//teste
-//teste 5

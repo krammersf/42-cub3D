@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:05:09 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 22:34:44 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/28 22:38:42 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,3 +258,5 @@ The function then calls `calculate_walls(game)`, which presumably calculates the
 
 Finally, the function calls `draw_cols(game, x)`, which draws a vertical strip of the screen based on the properties of the wall that was hit by the ray. This function was explained in a previous step.
 */
+
+//teste

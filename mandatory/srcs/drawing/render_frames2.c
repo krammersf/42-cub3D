@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:05:09 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 22:38:42 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/28 22:53:11 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,3 +260,4 @@ Finally, the function calls `draw_cols(game, x)`, which draws a vertical strip o
 */
 
 //teste
+//teste 5

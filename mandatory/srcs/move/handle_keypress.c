@@ -6,34 +6,38 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 10:56:22 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/27 15:36:16 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/28 23:03:53 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	move_p_slide_left(t_mlx *m)
+void	move_p_slide_left(t_mlx *mini)
 {
-	if (m->game_ptr->map_ptr->world_map \
-		[(int)(m->game_ptr->pos_x - m->game_ptr->plane_x * \
-			m->game_ptr->move_margin)][(int)(m->game_ptr->pos_y)] == '0')
-		m->game_ptr->pos_x -= m->game_ptr->plane_x * m->game_ptr->move_speed;
-	if (m->game_ptr->map_ptr->world_map \
-		[(int)(m->game_ptr->pos_x)][(int)(m->game_ptr->pos_y \
-			- m->game_ptr->plane_y * m->game_ptr->move_margin)] == '0')
-		m->game_ptr->pos_y -= m->game_ptr->plane_y * m->game_ptr->move_speed;
+	if (mini->game_ptr->map_ptr->world_map \
+		[(int)(mini->game_ptr->pos_x - mini->game_ptr->plane_x * \
+			mini->game_ptr->move_margin)][(int)(mini->game_ptr->pos_y)] == '0')
+		mini->game_ptr->pos_x -= mini->game_ptr->plane_x \
+			* mini->game_ptr->move_speed;
+	if (mini->game_ptr->map_ptr->world_map \
+		[(int)(mini->game_ptr->pos_x)][(int)(mini->game_ptr->pos_y \
+			- mini->game_ptr->plane_y * mini->game_ptr->move_margin)] == '0')
+		mini->game_ptr->pos_y -= mini->game_ptr->plane_y \
+			* mini->game_ptr->move_speed;
 }
 
-void	move_p_slide_right(t_mlx *m)
+void	move_p_slide_right(t_mlx *mini)
 {
-	if (m->game_ptr->map_ptr->world_map \
-		[(int)(m->game_ptr->pos_x + m->game_ptr->plane_x * \
-			m->game_ptr->move_margin)][(int)(m->game_ptr->pos_y)] == '0')
-		m->game_ptr->pos_x += m->game_ptr->plane_x * m->game_ptr->move_speed;
-	if (m->game_ptr->map_ptr->world_map \
-		[(int)(m->game_ptr->pos_x)][(int)(m->game_ptr->pos_y \
-			+ m->game_ptr->plane_y * m->game_ptr->move_margin)] == '0')
-		m->game_ptr->pos_y += m->game_ptr->plane_y * m->game_ptr->move_speed;
+	if (mini->game_ptr->map_ptr->world_map \
+		[(int)(mini->game_ptr->pos_x + mini->game_ptr->plane_x * \
+			mini->game_ptr->move_margin)][(int)(mini->game_ptr->pos_y)] == '0')
+		mini->game_ptr->pos_x += mini->game_ptr->plane_x \
+			* mini->game_ptr->move_speed;
+	if (mini->game_ptr->map_ptr->world_map \
+		[(int)(mini->game_ptr->pos_x)][(int)(mini->game_ptr->pos_y \
+			+ mini->game_ptr->plane_y * mini->game_ptr->move_margin)] == '0')
+		mini->game_ptr->pos_y += mini->game_ptr->plane_y \
+			* mini->game_ptr->move_speed;
 }
 
 int	handle_keypress(int keysym, t_mlx *mini)

@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 09:51:58 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 19:13:34 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/28 22:31:40 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_game
 	int				side;//OK
 	int				line_height;//OK
 	int				draw_start;//OK
-	int				draw_end;
+	int				draw_end;//OK
 	double			old_dir_x;
 	double			old_plane_x;
 	double			frame_time;//OK
@@ -128,7 +128,7 @@ typedef struct s_map
 	double		wall_x;
 	double		step;//OK
 	double		tex_pos;//OK
-	int			tex_y;
+	int			tex_y;//OK
 	//char		start_dir;
 	//int			nbr;
 	//int			comma;

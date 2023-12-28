@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:05:09 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 22:07:38 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/28 22:34:44 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,15 +195,34 @@ static void	draw_walls(t_game *game, int *x)
 This function is responsible for drawing a vertical strip (or "walls") of the
 screen, which represents a part of a wall in the 3D world.
 
-The function starts by setting y to game->draw_start, which is the starting point for drawing the line on the screen. This value was calculated in a previous step of the rendering process.
+The function starts by setting y to game->draw_start, which is the starting point
+for drawing the line on the screen. This value was calculated in a previous step
+of the rendering process.
 
-The function then enters a loop that continues as long as y is less than or equal to game->draw_end, which is the ending point for drawing the line on the screen. Inside this loop, the function calculates the y-coordinate of the texture to be used to draw the wall (tex_y). This is done by taking the bitwise AND of game->map_ptr->tex_pos and TEX_HEIGHT - 1. The game->map_ptr->tex_pos value is then incremented by game->map_ptr->step, which is the step size for moving through the texture vertically.
+The function then enters a loop that continues as long as y is less than or equal
+to game->draw_end, which is the ending point for drawing the line on the screen.
+Inside this loop, the function calculates the y-coordinate of the texture to be
+used to draw the wall (tex_y). This is done by taking the bitwise AND of
+game->map_ptr->tex_pos and TEX_HEIGHT - 1. The game->map_ptr->tex_pos value is
+then incremented by game->map_ptr->step, which is the step size for moving
+through the texture vertically.
 
-The function then checks the direction of the ray and the side of the wall that was hit to determine which texture to use. If the ray was moving to the right and hit a north/south wall, the function uses the texture for the south side of the wall. If the ray was moving to the left and hit a north/south wall, the function uses the texture for the north side of the wall. If the ray was moving down and hit an east/west wall, the function uses the texture for the east side of the wall. If the ray was moving up and hit an east/west wall, the function uses the texture for the west side of the wall.
+The function then checks the direction of the ray and the side of the wall that
+was hit to determine which texture to use. If the ray was moving to the right
+and hit a north/south wall, the function uses the texture for the south side of
+the wall. If the ray was moving to the left and hit a north/south wall, the
+function uses the texture for the north side of the wall. If the ray was moving
+down and hit an east/west wall, the function uses the texture for the east side
+of the wall. If the ray was moving up and hit an east/west wall, the function
+uses the texture for the west side of the wall.
 
-The function then calls ft_pixel_put to draw a pixel on the screen at the position (*x, y) with the color obtained from the appropriate texture at the position (game->texture_x, tex_y). The ft_pixel_get function is used to get the color of a pixel from a texture.
+The function then calls ft_pixel_put to draw a pixel on the screen at the
+position (*x, y) with the color obtained from the appropriate texture at the
+position (game->texture_x, tex_y). The ft_pixel_get function is used to get the
+color of a pixel from a texture.
 
-Finally, the function increments y to move to the next pixel in the line on the screen.
+Finally, the function increments y to move to the next pixel in the line on
+the screen.
 */
 
 // This function is part of the raycasting process in a 3D game engine.

@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:42:45 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 19:06:28 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/29 14:26:30 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ static void	init_game2(t_game *game, struct s_map *map_ptr, t_mlx *m)
 // initializes the game struct part 1
 void	init_game(t_game *game, struct s_map *map_ptr, t_mlx *m)
 {
-	game->move_up = 0;
-	game->move_down = 0;
-	game->move_left = 0;
-	game->move_right = 0;
-	game->slide_left = 0;
-	game->slide_right = 0;
+	int	i;
+
+	i = 0;
+	while (i < 6)
+	{
+		game->key[i] = 0;
+		i++;
+	}
 	game->pos_x = 0.0;
 	game->pos_y = 0.0;
 	game->dir_x = 0.0;

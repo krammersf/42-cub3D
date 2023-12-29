@@ -2,14 +2,16 @@
 
 
 
-NO	./mandatory/textures/north.xpm	
-	SO	./mandatory/textures/south.xpm 
-		WE ./mandatory/textures/west.xpm    
-EA ./mandatory/textures/a1.xpm
+NO	./mandatory/textures/north2.xpm	
+	SO	./mandatory/textures/south2.xpm 
+		WE ./mandatory/textures/west2.xpm    
+EA ./mandatory/textures/east2.xpm
 
 
-F 135,206,255 	
-C 		120,120,120
+
+F 51,25,0
+C 0,255,255	
+
 
 
 

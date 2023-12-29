@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors.c                                           :+:      :+:    :+:   */
+/*   get_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:08:54 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/27 16:22:13 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/29 18:30:59 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void	define_rgb_colors(t_map *map, char **rgb, char *str)
 	if (ft_strncmp(str, "C", 1) == 0)
 	{
 		fill_t_rgb(&map->ceiling_colors, rgb[1], rgb[2], rgb[3]);
+		//printf("ceiling_colors: %d %d %d\n", map->ceiling_colors.red, map->ceiling_colors.green, map->ceiling_colors.blue);	
 		if (!is_valid_colors(&map->ceiling_colors))
 			close_free("Invalid celing colors.", rgb, map);//OK
 	}
 	else if (ft_strncmp(str, "F", 1) == 0)
 	{
 		fill_t_rgb(&map->floor_colors, rgb[1], rgb[2], rgb[3]);
+		//printf("floor_colors: %d %d %d\n", map->floor_colors.red, map->floor_colors.green, map->floor_colors.blue);
 		if (!is_valid_colors(&map->floor_colors))
 			close_free("Invalid floor color", rgb, map);//OK
 	}
@@ -111,6 +113,8 @@ void	check_elements(t_map *map, char *texture, char *c)
 				close_free("Invalid char in color definition", array, map);
 		x++;
 	}
+	//printf("ceiling_colors: %d %d %d\n", map->ceiling_colors.red, map->ceiling_colors.green, map->ceiling_colors.blue);
+	//printf("floor_colors: %d %d %d\n", map->floor_colors.red, map->floor_colors.green, map->floor_colors.blue);
 	define_rgb_colors(map, array, c);
 	free_arr1(array);
 }

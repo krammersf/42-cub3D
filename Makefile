@@ -6,7 +6,7 @@
 #    By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/03 14:49:49 by fde-carv          #+#    #+#              #
-#    Updated: 2023/12/28 16:21:59 by fde-carv         ###   ########.fr        #
+#    Updated: 2023/12/31 12:05:05 by fde-carv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,19 +43,16 @@ SRCS			=	main.c\
 					init/init_data.c\
 					init/open_window.c\
 					init/init_textures_img.c\
-					drawing/render_frames.c\
-					drawing/render_frames2.c\
-					drawing/ft_pixel_put.c\
-					drawing/ft_pixel_get.c\
 					drawing/background.c\
-					utils/time.c\
-					utils/is_direction.c\
+					drawing/ft_pixel.c\
+					drawing/making_walls.c\
+					drawing/render_frames.c\
 					utils/free_arr.c\
-					utils/is_valid_colors.c\
-					utils/get_array_size.c\
+					utils/some_utils.c\
 					move/move_player.c\
 					move/handle_keypress.c\
-					move/handle_player_keys.c\
+					move/handle_player_keys_1.c\
+					move/handle_player_keys_2.c\
 					close/close_window.c\
 					parser/check_map_integrity.c\
 					parser/get_map_size.c\

@@ -6,14 +6,14 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:42:45 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/29 14:26:30 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/31 12:14:57 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
 // initializes the game struct part 2
-static void	init_game2(t_game *game, struct s_map *map_ptr, t_mlx *m)
+void	init_game2(t_game *game, struct s_map *map_ptr, t_mlx *m)
 {
 	game->side_dist_x = 0.0;
 	game->side_dist_y = 0.0;
@@ -93,9 +93,8 @@ void	init_t_map(t_map *map, t_game *game)
 	map->map_end = 0;
 	map->line_nbr = 0;
 	map->has_player = 0;
-
-	map->f_color = 0;
-	map->c_color = 0;
+	map->f_color_bites = 0;
+	map->c_color_bites = 0;
 }
 
 // initializes the mlx pointers to NULL

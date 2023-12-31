@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 09:51:58 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/29 17:25:54 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/31 12:19:43 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,104 +45,104 @@
 /* --=+=+=+=+=+=--> Structs <--=+=+=+=+=+=-- */
 typedef struct s_texture
 {
-	void			*img;//OK
-	char			*addr;//OK
-	int				bits_per_pixel;//OK
-	int				line_length;//OK
-	int				endian;//OK
-	int				txt_w;//OK
-	int				txt_h;//OK
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				txt_w;
+	int				txt_h;
 }		t_texture;
 
 typedef struct s_mlx
 {
-	char			*mlx;//OK
-	void			*mlx_win;//OK
-	void			*img;//OK
-	char			*addr;//OK
-	int				bits_per_pixel;//OK
-	int				line_length;//OK
-	int				endian;//OK
-	struct s_game	*game_ptr;//OK
+	char			*mlx;
+	void			*mlx_win;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	struct s_game	*game_ptr;
 }		t_mlx;
 
 typedef struct s_rgb
 {
-	int				red;//OK
-	int				green;//OK
-	int				blue;//OK
+	int				red;
+	int				green;
+	int				blue;
 }		t_rgb;
 
 typedef struct s_game
 {
-	int				key[6];//OK
-	double			pos_x;//OK
-	double			pos_y;//OK
-	double			dir_x;//OK
-	double			dir_y;//OK
-	double			plane_x;//OK
-	double			plane_y;//OK
-	double			move_speed;//OK
-	double			rot_speed;//OK
-	double			move_margin;//OK
-	double			time;//OK
-	double			old_time;//OK
-	double			camera_x;//OK
-	double			ray_dir_x;//OK
-	double			ray_dir_y;//OK
-	int				map_x;//OK
-	int				map_y;//OK
-	double			side_dist_x;//OK
-	double			side_dist_y;//OK
-	double			delta_dist_x;//OK
-	double			delta_dist_y;//OK
-	double			perp_wall_dist;//OK
-	int				step_x;//OK
-	int				step_y;//OK
-	int				hit;//OK
-	int				side;//OK
-	int				line_height;//OK
-	int				draw_start;//OK
-	int				draw_end;//OK
-	double			old_dir_x;//OK
-	double			old_plane_x;//OK
-	double			frame_time;//OK
-	int				fps;//OK
-	double			tps;//OK
-	int				texture_x;//OK
-	int				pitch;//OK
-	t_texture		*txt_ptr;//OK
-	struct s_map	*map_ptr;//OK
-	t_mlx			*mini_ptr;//OK
+	int				key[6];
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			move_speed;
+	double			rot_speed;
+	double			move_margin;
+	double			time;
+	double			old_time;
+	double			camera_x;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			perp_wall_dist;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	double			old_dir_x;
+	double			old_plane_x;
+	double			frame_time;
+	int				fps;
+	double			tps;
+	int				texture_x;
+	int				pitch;
+	t_texture		*txt_ptr;
+	struct s_map	*map_ptr;
+	t_mlx			*mini_ptr;
 }		t_game;
 
 typedef struct s_map
 {
-	int				fd;//OK
-	int				ttl_nbr_lines;//OK
-	char			*extension;//OK
-	char			*get_line;//OK
-	char			*map_path;//OK
-	char			*north_texture;//OK
-	char			*south_texture;//OK
-	char			*west_texture;//OK
-	char			*east_texture;//OK
-	char			*floor_texture;//OK
-	char			*ceiling_texture;//OK
-	char			**world_map;//OK
-	double			wall_x;//OK
-	double			step;//OK
-	double			tex_pos;//OK
-	int				tex_y;//OK
-	int				inside_checked;//OK
-	int				map_start;//OK
-	int				map_end;//OK
-	int				line_nbr;//OK
-	int				map_copy_x;//OK
-	int				map_copy_y;//OK
-	int				has_player;//OK
-	int				f_color;//cores in bites
-	int				c_color;//cores in bites
+	int				fd;
+	int				ttl_nbr_lines;
+	char			*extension;
+	char			*get_line;
+	char			*map_path;
+	char			*north_texture;
+	char			*south_texture;
+	char			*west_texture;
+	char			*east_texture;
+	char			*floor_texture;
+	char			*ceiling_texture;
+	char			**world_map;
+	double			wall_x;
+	double			step;
+	double			tex_pos;
+	int				tex_y;
+	int				inside_checked;
+	int				map_start;
+	int				map_end;
+	int				line_nbr;
+	int				map_copy_x;
+	int				map_copy_y;
+	int				has_player;
+	int				f_color_bites;
+	int				c_color_bites;
 	t_game			*game_ptr;
 	t_rgb			ceiling_colors;
 	t_rgb			floor_colors;
@@ -158,36 +158,75 @@ enum e_direction
 
 /* --@@@@@@@@@@@--> FUNCTIONS <--@@@@@@@@@@@-- */
 
-/* --=+=+=+=+=+=--> Utils <--=+=+=+=+=+=-- */
-void		free_arr(char **arr, t_map *m);//
-void		free_arr1(char **arr);//
-void		free_total(char **arr, char *str);//
-int			get_arr_size(char **arr);//
-bool		is_valid_colors(t_rgb *colors);//
-bool		is_direction(char c);//
-long long	get_actual_time(void);//
-void		access_path(t_map *map, char *texture);//
+/* --=+=+=+=+=+=--> Close <--=+=+=+=+=+=-- */
+void		free_t_map(t_map *map);
+void		cleaning(t_game *game, t_map *map);
+int			close_window(t_game *game);
+
+/* --=+=+=+=+=+=--> Drawing <--=+=+=+=+=+=-- */
+void		draw_floor(t_mlx *mini, int color);
+void		draw_ceiling(t_mlx *mini, int color);
+int			get_rgb(int red, int green, int blue);
+void		background(t_mlx mini, int floor_color, int ceiling_color);
+int			ft_pixel_get(t_texture *txt, int x, int y);
+void		ft_pixel_put(t_mlx *mini, int x, int y, int color);
+void		fps(t_game *game);
+void		check_hit(t_game *game);
+void		calculate_walls(t_game *game);
+void		draw_walls(t_game *game, int *x);
+void		get_bite_floor_color(t_map *map);
+void		get_bite_ceiling_color(t_map *map);
+void		render_frames_1(t_game *game, int *x);
+void		render_frames_2(t_game *game, int *x);
+int			render_frames_total(void *arg);
 
 /* --=+=+=+=+=+=--> Init <--=+=+=+=+=+=-- */
+void		init_game2(t_game *game, struct s_map *map_ptr, t_mlx *m);
+void		init_game(t_game *game, struct s_map *map_ptr, t_mlx *m);
+void		init_t_map(t_map *map, t_game *game);
+void		init_mlx(t_mlx *map);
+void		init_textures_img(t_game *game);
+void		open_window(t_mlx *map, int screen_width,
+				int screen_height, char *window_description);
 void		close_free(char *msg, char **arr, t_map *map);
-void		init_t_map(t_map *m, t_game *d);
+void		read_cub_file(t_map *map);
 
 /* --=+=+=+=+=+=--> Move <--=+=+=+=+=+=-- */
 int			handle_keypress(int keysym, t_game *game);
 int			handle_keyrelease(int keysym, t_game *game);
 void		move_p_forward(t_game *game);
 void		move_p_backward(t_game *game);
-void		rotate_p_right(t_game *game);
-void		rotate_p_left(t_game *game);
 void		move_p_slide_left(t_game *game);
 void		move_p_slide_right(t_game *game);
+void		rotate_p_right(t_game *game);
+void		rotate_p_left(t_game *game);
+void		move_player_forward(t_game *game);
+void		move_player_backward(t_game *game);
 void		move_player(t_game *game);
+
+/* --=+=+=+=+=+=--> Parser <--=+=+=+=+=+=-- */
+
+
+/* --=+=+=+=+=+=--> Utils <--=+=+=+=+=+=-- */
+void		free_arr(char **arr, t_map *m);
+void		free_arr1(char **arr);
+void		free_total(char **arr, char *str);
+int			get_arr_size(char **arr);
+bool		is_direction(char c);
+bool		is_valid_colors(t_rgb *colors);
+long long	get_actual_time(void);
+
+
+
+
+
+
+
+
+
 
 /* --=+=+=+=+=+=--> Cub3d <--=+=+=+=+=+=-- */
 void		ft_pixel_put(t_mlx *game, int x, int y, int color);
-void		open_window(t_mlx *m, int screen_width, int screen_height, \
-	char *window_description);
-
 int			close_window(t_game *d);
 void		init_game(t_game *d, struct s_map *map_ptr, t_mlx *m);
 int			render_frames_total(void *arg);
@@ -201,10 +240,10 @@ void		perror_close_2mgs(char *msg1, char *msg2, t_map *map);
 void		check_map_integrity(t_map *map);
 int			ft_pixel_get(t_texture *txt, int x, int y);
 
-/* --=+=+=+=+=+=--> Drawing <--=+=+=+=+=+=-- */
-int			get_rgb(int red, int green, int blue);
+
 
 /* --=+=+=+=+=+=--> Parser <--=+=+=+=+=+=-- */
+void		access_path(t_map *map, char *texture);
 void		read_cub_file(t_map *map);
 int			access_file(t_map *map);
 bool		check_map_extension(t_map *map, char *filename);

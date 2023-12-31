@@ -6,12 +6,11 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:49:45 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/25 20:28:28 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/31 11:11:45 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
 
 // checks if the map elements are correct
 int	check_elem_file(char *line)

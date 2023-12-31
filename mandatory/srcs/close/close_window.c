@@ -6,14 +6,14 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:59:10 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/27 22:23:08 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/31 11:50:49 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
 // function to free the map struct
-static void	free_t_map(t_map *map)
+void	free_t_map(t_map *map)
 {
 	if (map->north_texture)
 		free(map->north_texture);
@@ -34,7 +34,7 @@ static void	free_t_map(t_map *map)
 }
 
 // function to free pointer to texture and map struct
-static void	cleaning(t_game *game, t_map *map)
+void	cleaning(t_game *game, t_map *map)
 {
 	if (game->txt_ptr)
 		free(game->txt_ptr);

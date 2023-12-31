@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:23:47 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 14:34:40 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/31 11:24:57 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	set_start(double x, double y, char c, t_map *map)
 		game->plane_y = 0;
 	}
 }
-
 
 // checks if the char is a valid char
 bool	is_valid_char(char c)

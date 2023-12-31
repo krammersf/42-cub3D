@@ -5,15 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 13:11:26 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 15:48:23 by fde-carv         ###   ########.fr       */
+/*   Created: 2023/12/05 13:05:09 by fde-carv          #+#    #+#             */
+/*   Updated: 2023/12/31 12:17:35 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+// gets the color of the floor int bites and stores it in t_map
+void	get_bite_floor_color(t_map *map)
+{
+	t_rgb	*floor;
+
+	floor = &map->floor_colors;
+	map->f_color_bites = get_rgb(floor->red, floor->green, floor->blue);
+	//printf("FRED floor: %d\n", map->f_color_bites);
+}
+
+// gets the color of the ceiling int bites and stores it in t_map
+void	get_bite_ceiling_color(t_map *map)
+{
+	t_rgb	*ceiling;
+
+	ceiling = &map->ceiling_colors;
+	map->c_color_bites = get_rgb(ceiling->red, ceiling->green, ceiling->blue);
+	//printf("FRED ceiling: %d\n", map->c_color_bites);
+}
+
 // raycasting function to render the frames
-static void	render_frames_1(t_game *game, int *x)
+void	render_frames_1(t_game *game, int *x)
 {
 	game->camera_x = 2 * *x / (double)SCREEN_WIDTH - 1; // ( -1 to 1 )
 	game->ray_dir_x = game->dir_x + game->plane_x * game->camera_x;
@@ -23,11 +43,11 @@ static void	render_frames_1(t_game *game, int *x)
 	game->map_y = (int)game->pos_y;
 	//printf("map_y: %d\n", game->map_y);
 	if (game->ray_dir_x == 0)
-		game->delta_dist_x = 1e30;
+		game->delta_dist_x = 1e20;
 	else
 		game->delta_dist_x = fabs(1.0 / game->ray_dir_x);
 	if (game->ray_dir_y == 0)
-		game->delta_dist_y = 1e30;
+		game->delta_dist_y = 1e20;
 	else
 		game->delta_dist_y = fabs(1.0 / game->ray_dir_y);
 	game->hit = '0';
@@ -81,65 +101,55 @@ calculated based on the difference between the next map square and the camera
 position.
 */
 
-// gets the fps of the game
-static void	fps(t_game *game)
+// This function is part of the raycasting process in a 3D game engine.
+// It calculates the properties of each vertical strip of the screen that
+// needs to be drawn, checks if the ray has hit a wall, calculates the
+// properties of the wall that was hit and draws a vertical wall on the screen
+void	render_frames_2(t_game *game, int *x)
 {
-	game->old_time = game->time;
-	game->time = get_actual_time();
-	game->frame_time = (game->time - game->old_time) / 1000.0;
-	if (game->tps <= 1.0) // (1.0)
+	if (game->ray_dir_y < 0)
 	{
-		game->fps++;
-		game->tps += game->frame_time;
+		game->step_y = -1;
+		game->side_dist_y = (game->pos_y - game->map_y) * game->delta_dist_y;
 	}
 	else
 	{
-		printf("[\033[1;33mCUB3D\033[0m] FPS: %d\n", game->fps);
-		//printf("[cub3d] TPS: %d\n", game->fps);
-		game->fps = 0;
-		game->tps = 0.0;
+		game->step_y = 1;
+		game->side_dist_y = (game->map_y + 1.0 - game->pos_y) * \
+			game->delta_dist_y;
 	}
+	if (game->map_x != 0 && game->map_y != 0)
+		check_hit(game);
+	calculate_walls(game);
+	draw_walls(game, x);
 }
 /*
-This function is used to calculate and display the frames per second (FPS)
-in a game. It takes one parameter: a pointer to a `t_game` structure, which holds
-the state of the game.
+It takes two arguments: a pointer to a `t_game` structure and a pointer to an
+integer `x`. This function is part of a 3D game engine, specifically a part of
+the raycasting process that calculates the properties of each vertical strip
+(or "wall") of the screen that needs to be drawn.
 
-The function starts by storing the old time value (`game->time`) and then
-updating the current time value with the `get_actual_time` function. The frame
-time, which is the time it took to render the last frame, is then calculated by
-subtracting the old time from the current time and dividing the result by 1000.0
-to convert it from milliseconds to seconds.
+The function starts by checking if `game->ray_dir_y` is less than 0, which means
+the ray is moving upwards on the map. If it is, the function sets `game->step_y`
+to -1 and calculates `game->side_dist_y` as the distance from the current
+position to the next horizontal grid line above the current position. If
+`game->ray_dir_y` is not less than 0, which means the ray is moving downwards on
+the map, the function sets `game->step_y` to 1 and calculates `game->side_dist_y`
+as the distance from the current position to the next horizontal grid line below
+the current position. The `game->delta_dist_y` value is used to scale these
+distances based on the direction of the ray.
 
-Next, the function checks if the total time spent rendering (`game->tps`)
-(tps -> time per second) is less than or equal to 1.0 second. If it is, the
-function increments the frame counter (`game->fps`) and adds the frame time to
-the total time spent rendering.
+The function then checks if `game->map_x` and `game->map_y` are both non-zero.
+If they are, the function calls `check_hit(game)`, which checks if the ray has
+hit a wall on the map. It's a common step in the raycasting process.
 
-If the total time spent rendering is more than 1.0 second, the function prints
-the number of frames rendered in the last second (the FPS) and then resets the
-frame counter and the total time spent rendering.
+The function then calls `calculate_walls(game)`, which calculates the properties
+of the wall that was hit by the ray, such as the exact hit point and the distance
+to the wall. It's another common step in the raycasting process.
+
+Finally, the function calls `draw_cols(game, x)`, which draws a vertical strip
+of the screen based on the properties of the wall that was hit by the ray.
 */
-
-// gets the color of the floor int bites and stores it in t_map
-void	get_bite_floor_color(t_map *map)
-{
-	t_rgb	*floor;
-
-	floor = &map->floor_colors;
-	map->f_color = get_rgb(floor->red, floor->green, floor->blue);
-	//printf("FRED floor: %d\n", map->f_color);
-}
-
-// gets the color of the ceiling int bites and stores it in t_map
-void	get_bite_ceiling_color(t_map *map)
-{
-	t_rgb	*ceiling;
-
-	ceiling = &map->ceiling_colors;
-	map->c_color = get_rgb(ceiling->red, ceiling->green, ceiling->blue);
-	//printf("FRED ceiling: %d\n", map->c_color);
-}
 
 // Main function that compiles many 3D important functions. Draws background,
 // walls, set move and rotation speed, margin and player movement.
@@ -151,7 +161,7 @@ int	render_frames_total(void *arg)
 	game = arg;
 	get_bite_floor_color(game->map_ptr);
 	get_bite_ceiling_color(game->map_ptr);
-	background(*game->mini_ptr, game->map_ptr->c_color, game->map_ptr->f_color);
+	background(*game->mini_ptr, game->map_ptr->c_color_bites, game->map_ptr->f_color_bites);
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{

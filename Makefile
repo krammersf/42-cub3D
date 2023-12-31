@@ -6,7 +6,7 @@
 #    By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/03 14:49:49 by fde-carv          #+#    #+#              #
-#    Updated: 2023/12/31 12:05:05 by fde-carv         ###   ########.fr        #
+#    Updated: 2023/12/31 12:49:35 by fde-carv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,9 @@ SRCS			=	main.c\
 					parser/get_map_to_array.c\
 					parser/get_elements_textures.c\
 					parser/check_line.c\
-					parser/get_colors.c
-
+					parser/get_colors.c\
+					#utils/ft_debug.c
+										
 SRCS_BONUS		=	main_bonus.c\
 					parser/check_input_bonus.c\
 					parser/check_map_integrity_bonus.c\

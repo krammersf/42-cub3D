@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 09:51:58 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 12:19:43 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/31 12:54:40 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include <sys/time.h>
 
 /* --=+=+=+=+=+=--> Messages <--=+=+=+=+=+=-- */
-# define GAME_NAME "Cube3d --> by ... fde-carv + blablaba"
+# define GAME_NAME "Cube3d --> made by fde-carv & blablaba"
 
 /* --=+=+=+=+=+=--> Width and Height <--=+=+=+=+=+=-- */
 # define SCREEN_WIDTH 1024 //800 // LARGURA
@@ -216,6 +216,9 @@ bool		is_direction(char c);
 bool		is_valid_colors(t_rgb *colors);
 long long	get_actual_time(void);
 
+/* --=+=+=+=+=+=--> Debug (in utils) <--=+=+=+=+=+=-- */
+//void		ft_print_array(char **arr, int nb_lines);
+//void		ft_print_t_map(t_map *map);
 
 
 
@@ -262,12 +265,5 @@ void		define_rgb_colors(t_map *map, char **rgb, char *str);
 void		check_floor_comma(t_map *map);
 void		check_ceiling_comma(t_map *map);
 void		check_elements(t_map *map, char *texture, char *c);
-
-
-
-
-/* --=+=+=+=+=+=--> Debug <--=+=+=+=+=+=-- */
-//void		ft_print_array(char **arr, int nb_lines);
-//void		ft_print_t_map(t_map *map);
 
 #endif

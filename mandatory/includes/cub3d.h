@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 09:51:58 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 12:54:40 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:05:15 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ enum e_direction
 
 /* --=+=+=+=+=+=--> Close <--=+=+=+=+=+=-- */
 void		free_t_map(t_map *map);
-void		cleaning(t_game *game, t_map *map);
+//void		cleaning(t_game *game, t_map *map);
 int			close_window(t_game *game);
 
 /* --=+=+=+=+=+=--> Drawing <--=+=+=+=+=+=-- */
@@ -205,7 +205,40 @@ void		move_player_backward(t_game *game);
 void		move_player(t_game *game);
 
 /* --=+=+=+=+=+=--> Parser <--=+=+=+=+=+=-- */
-
+int			access_file(t_map *map);
+void		access_path(t_map *map, char *texture);
+void		perror_close(char *msg, t_map *map);
+void		perror_close_fd(char *msg, t_map *map, int fd);
+int			check_input(int ac, char *path_str, t_map *map);
+int			check_elem_file(char *line);
+void		check_elem_file_is_ok(char *line, char **arr, t_map *map);
+int			check_elem_file(char *line);
+void		check_elem_file_is_ok(char *line, char **arr, t_map *map);
+bool		check_map_extension(t_map *map, char *filename);
+char		**to_copy_map(t_map *map);
+int			ft_begin_strlen(char *line);
+int			find_first_zero(t_map *map, char **map_copy);
+void		check_flood_fill(t_map *map, char **array, int y, int x);
+void		check_map_integrity(t_map *map);
+void		fill_t_rgb(t_rgb *rgb, char *red, char *green, char *blue);
+void		define_rgb_colors(t_map *map, char **rgb, char *str);
+void		check_floor_comma(t_map *map);
+void		check_ceiling_comma(t_map *map);
+void		check_elements(t_map *map, char *texture, char *c);
+void		check_texture(t_map *map, char **texture,
+				char **dir, char **line_arr);
+void		get_elements_textures(t_map *map, char **line_arr);
+char		*get_texture(char *line);
+void		get_elements_colors_textures(t_map *map, char **line_arr);
+void		check_textures_paths(t_map *map);
+void		get_elements(t_map *map);
+void		get_map_size(t_map *map);
+void		set_start_ns(char c, t_game *game);
+void		set_start(double x, double y, char c, t_map *map);
+bool		is_valid_char(char c);
+void		get_map_to_array_while_get_line(t_map *map, int x, int y);
+void		get_map_to_array(t_map *map);
+void		get_ttl_nbr_lines(t_map *map);
 
 /* --=+=+=+=+=+=--> Utils <--=+=+=+=+=+=-- */
 void		free_arr(char **arr, t_map *m);
@@ -216,54 +249,12 @@ bool		is_direction(char c);
 bool		is_valid_colors(t_rgb *colors);
 long long	get_actual_time(void);
 
+
+char		*get_next_line(int fd);
+
+
 /* --=+=+=+=+=+=--> Debug (in utils) <--=+=+=+=+=+=-- */
 //void		ft_print_array(char **arr, int nb_lines);
 //void		ft_print_t_map(t_map *map);
-
-
-
-
-
-
-
-
-
-/* --=+=+=+=+=+=--> Cub3d <--=+=+=+=+=+=-- */
-void		ft_pixel_put(t_mlx *game, int x, int y, int color);
-int			close_window(t_game *d);
-void		init_game(t_game *d, struct s_map *map_ptr, t_mlx *m);
-int			render_frames_total(void *arg);
-void		render_frames_2(t_game *game, int *x);
-void		background(t_mlx m, int ground_color, int sky_color);
-void		init_textures_img(t_game *d);
-void		init_mlx(t_mlx *m);
-void		perror_close(char *msg, t_map *map);
-void		perror_close_fd(char *msg, t_map *map, int fd);
-void		perror_close_2mgs(char *msg1, char *msg2, t_map *map);
-void		check_map_integrity(t_map *map);
-int			ft_pixel_get(t_texture *txt, int x, int y);
-
-
-
-/* --=+=+=+=+=+=--> Parser <--=+=+=+=+=+=-- */
-void		access_path(t_map *map, char *texture);
-void		read_cub_file(t_map *map);
-int			access_file(t_map *map);
-bool		check_map_extension(t_map *map, char *filename);
-void		get_elements(t_map *map);
-void		get_map_size(t_map *map);
-void		get_map_to_array(t_map *map);
-void		get_ttl_nbr_lines(t_map *map);
-int			check_input(int ac, char *path_str, t_map *m);
-void		check_flood_fill(t_map *map, char **floor, int i, int j);
-char		*get_texture(char *line);
-void		get_elements_textures(t_map *map, char **line_arr);
-void		check_elem_file_is_ok(char *line, char **arr, t_map *m);
-int			check_elem_file(char *line);
-
-void		define_rgb_colors(t_map *map, char **rgb, char *str);
-void		check_floor_comma(t_map *map);
-void		check_ceiling_comma(t_map *map);
-void		check_elements(t_map *map, char *texture, char *c);
 
 #endif

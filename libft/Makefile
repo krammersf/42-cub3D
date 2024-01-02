@@ -6,7 +6,7 @@
 #    By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/13 17:49:20 by fde-carv          #+#    #+#              #
-#    Updated: 2023/12/28 15:55:15 by fde-carv         ###   ########.fr        #
+#    Updated: 2024/01/02 16:46:44 by fde-carv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,16 @@ SRCS	=	srcs/strings/ft_memccpy.c srcs/strings/ft_memcmp.c srcs/strings/ft_bzero.
 			srcs/extra/ft_putendl.c srcs/extra/ft_putstr.c srcs/extra/ft_striteri.c srcs/extra/ft_putchar.c srcs/extra/ft_putchar_fd.c srcs/extra/ft_swap.c \
 			srcs/extra/ft_putnbr.c srcs/extra/ft_itoa.c srcs/extra/ft_strclen.c srcs/extra/ft_putstr_fd.c srcs/extra/ft_putendl_fd.c srcs/extra/ft_split_free.c \
 			srcs/extra/ft_strmapi.c srcs/extra/ft_split.c srcs/extra/ft_putnbr_fd.c srcs/extra/ft_strtrim.c srcs/extra/ft_substr.c srcs/stdlib/ft_atol.c \
-			srcs/stdlib/ft_atoi.c srcs/stdlib/ft_calloc.c srcs/stdlib/ft_atof.c srcs/extra/ft_split_set.c srcs/gnl/get_next_line_bonus_1.c srcs/gnl/get_next_line_bonus_2.c \
-			srcs/extra/ft_flood_fill.c
+			srcs/stdlib/ft_atoi.c srcs/stdlib/ft_calloc.c srcs/stdlib/ft_atof.c srcs/extra/ft_split_set.c \
+			srcs/extra/ft_flood_fill.c \
+			#srcs/gnl/get_next_line_dav1.c \
+			srcs/gnl/get_next_line_dav2.c \
+			srcs/gnl/get_next_line_bonus_1.c \
+			srcs/gnl/get_next_line_bonus_2.c \
+			srcs/gnl/get_next_line_2.c \
+			srcs/gnl/get_next_line.c \
+
+			
 OBJS	= $(subst $(SRC_DIR), $(OBJ_DIR), $(SRCS:.c=.o))
 
 # pattern rule that specifies how to create an object file using a source file

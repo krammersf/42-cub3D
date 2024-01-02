@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:03:31 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 16:09:05 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:05:37 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
-# endif // BUFFER_SIZE
+# endif
 
 /*
 ** Linked lists functions (BONUS)
@@ -159,12 +159,24 @@ int			param_hex(unsigned int num, char c);
 ** get_next_line function
 */
 
-//char		*get_next_line(int fd);
-//char		*ft_strjoin_gnl(char *static_buffer, char *temp);
+char		*read_from(int fd, char *read_line);
+char		*get_next_line(int fd);
+char		*ft_strjoin_gnl2(char *s1, char *s2);
+char		*ft_get_line(char *text);
+char		*remain_text(char *text);
 
+
+
+
+
+char		*get_next_line_4(int fd);
+
+char		*get_next_line_2(int fd);
+char		*ft_strjoin_gnl(char *static_buffer, char *temp);
+
+char		*get_next_line(int fd);
 char		*get_keep(char *buffer);
 char		*get_line(char *buffer);
-char		*get_next_line(int fd);
 int			strlen_at(char *s, char c);
 int			have_newline(char *s);
 char		*ft_strncpy2(char *dst, char *src, int n);

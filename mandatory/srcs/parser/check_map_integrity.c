@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:23:47 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/28 15:19:16 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/02 14:33:27 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_begin_strlen(char *line)
 }
 
 // find first '0' in 2d array
-int	find_first_space(t_map *map, char **map_copy)
+int	find_first_zero(t_map *map, char **map_copy)
 {
 	int	x;
 	int	y;
@@ -68,11 +68,11 @@ int	find_first_space(t_map *map, char **map_copy)
 		{
 			if (map_copy[x][y] == '0')
 			{
-				printf("Encontrou: \n");//	
+				//printf("Encontrou: \n");//	
 				map->map_copy_x = x;
 				map->map_copy_y = y;
-				printf("map_copy_x: %d\n", map->map_copy_x);//
-				printf("map_copy_y: %d\n", map->map_copy_y);//
+				//printf("map_copy_x: %d\n", map->map_copy_x);//
+				//printf("map_copy_y: %d\n", map->map_copy_y);//
 				return (0);
 			}
 			y++;
@@ -92,11 +92,6 @@ void	check_flood_fill(t_map *map, char **array, int y, int x)
 		|| x >= (int)ft_strlen(array[y])
 		|| array[y][x] != '0')
 	{
-		//if (y < 0 || x < 0 || y >= map->map_end - map->map_start)
-		//{
-		//	map->inside_checked = 1;
-		//	return ;
-		//}
 		if (array[y][x] != '0' && array[y][x] != '1' && array[y][x] != 'X')
 			map->inside_checked = 1;
 		return ;
@@ -118,7 +113,7 @@ void	check_map_integrity(t_map *map)
 	map_copy = to_copy_map(map);
 	while (map->inside_checked == 0)
 	{
-		if (find_first_space(map, map_copy) == 1)
+		if (find_first_zero(map, map_copy) == 1)
 			break ;
 		check_flood_fill(map, map_copy, map->map_copy_x, map->map_copy_y);
 	}

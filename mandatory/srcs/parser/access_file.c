@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:23:18 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/27 14:44:20 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:29:54 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	access_path(t_map *map, char *texture)
 	int	len;
 
 	if (texture == NULL)
-		perror_close("Invalid map.ff", map);//percebo a logica nao consigo reproduzir o erro
+		perror_close_fd("Null texture in the map.", map, map->fd);//percebo a logica nao consigo reproduzir o erro
 	else
 	{
 		fd = open(texture, O_RDONLY);

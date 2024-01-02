@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 10:59:10 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 11:50:49 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:05:56 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,36 @@ void	free_t_map(t_map *map)
 }
 
 // function to free pointer to texture and map struct
-void	cleaning(t_game *game, t_map *map)
-{
-	if (game->txt_ptr)
-		free(game->txt_ptr);
-	free_t_map(map);
-}
+// void	cleaning(t_game *game, t_map *map)
+// {
+// 	if (game->txt_ptr)
+// 		free(game->txt_ptr);
+// 	free_t_map(map);
+// }
 
 // function to close the window and free the memory using mlx functions
 int	close_window(t_game *game)
 {
 	int		i;
 
+	i = -1;
 	if (game->mini_ptr->mlx)
 		mlx_clear_window(game->mini_ptr->mlx, game->mini_ptr->mlx_win);
 	if (game->mini_ptr->mlx)
 		mlx_destroy_window(game->mini_ptr->mlx, game->mini_ptr->mlx_win);
 	if (game->mini_ptr->mlx)
 		mlx_destroy_image(game->mini_ptr->mlx, game->mini_ptr->img);
-	i = 0;
-	while (i < 4)
+	while (++i < 4)
 	{
 		if (game->mini_ptr->mlx)
 			mlx_destroy_image(game->mini_ptr->mlx, game->txt_ptr[i].img);
-		i++;
 	}
 	if (game->mini_ptr->mlx_win)
 		mlx_destroy_display(game->mini_ptr->mlx);
-	cleaning(game, game->map_ptr);
+	//cleaning(game, game->map_ptr);
+	if (game->txt_ptr)
+		free(game->txt_ptr);
+	free_t_map(game->map_ptr);
 	if (game->mini_ptr->mlx)
 		free(game->mini_ptr->mlx);
 	exit(0);

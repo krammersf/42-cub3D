@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:49:45 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 11:11:45 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:29:36 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 // checks if the map elements are correct
 int	check_elem_file(char *line)
 {
-	if (ft_strncmp("NO", line, 2) == 0
-		|| ft_strncmp("SO", line, 2) == 0
-		|| ft_strncmp("WE", line, 2) == 0
-		|| ft_strncmp("EA", line, 2) == 0
+	if (ft_strcmp("NO", line) == 0
+		|| ft_strcmp("SO", line) == 0
+		|| ft_strcmp("WE", line) == 0
+		|| ft_strcmp("EA", line) == 0
 		|| ft_strcmp("F", line) == 0 || ft_strcmp("C", line) == 0)
 		return (1);
 	return (0);
@@ -30,6 +30,7 @@ void	check_elem_file_is_ok(char *line, char **arr, t_map *map)
 	if (!check_elem_file(line))
 	{
 		free_arr1(arr);
-		perror_close("Check map elements.", map);//OK
+		perror_close_fd("Check map elements. Possible wrong element name.", \
+			map, map->fd);// OK
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:05:09 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 12:17:35 by fde-carv         ###   ########.fr       */
+/*   Updated: 2023/12/31 20:04:01 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,8 @@ int	render_frames_total(void *arg)
 	game = arg;
 	get_bite_floor_color(game->map_ptr);
 	get_bite_ceiling_color(game->map_ptr);
-	background(*game->mini_ptr, game->map_ptr->c_color_bites, game->map_ptr->f_color_bites);
+	background(*game->mini_ptr, game->map_ptr->c_color_bites,
+		game->map_ptr->f_color_bites);
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{
@@ -170,7 +171,7 @@ int	render_frames_total(void *arg)
 		x++;
 	}
 	fps(game);
-	game->move_speed = game->frame_time * 2.0;//deslocamento(2.5)
+	game->move_speed = game->frame_time * 2.2;//deslocamento(2.5)
 	game->rot_speed = game->frame_time * 2.0;//rotacao(2.0)
 	game->move_margin = 0.5;//margem(0.6)
 	move_player(game);

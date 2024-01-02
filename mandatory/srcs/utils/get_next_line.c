@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:03:57 by joaoalme          #+#    #+#             */
-/*   Updated: 2024/01/02 11:53:02 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:03:02 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+//#include "../../includes/cub3d.h"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 1
 #endif
 
 typedef struct s_gnl
@@ -29,7 +30,7 @@ typedef struct s_gnl
 	long	size_line;
 }	t_gnl;
 
-char	*get_line(char *line, char *buffer, long size_buf, long *size_line)
+char	*get_the_line(char *line, char *buffer, long size_buf, long *size_line)
 {
 	t_gnl	info;
 
@@ -38,7 +39,7 @@ char	*get_line(char *line, char *buffer, long size_buf, long *size_line)
 	info.s_buff = -1;
 	info.line = line;
 	*size_line += size_buf;
-	line = malloc(*size_line + 1 * sizeof(char));
+	line = malloc((*size_line + 1) * sizeof(char));
 	if (line)
 	{
 		line[*size_line] = 0;
@@ -70,11 +71,11 @@ void	get_next_line_while(t_gnl *d, int fd, char *buf)
 			d->s_buff++;
 		d->index = (d->index == d->s_buff);
 		d->s_buff += buf[d->s_buff] == '\n';
-		d->line = get_line(d->line, buf, d->s_buff, &d->size_line);
+		d->line = get_the_line(d->line, buf, d->s_buff, &d->size_line);
 	}
 }
 
-char	*get_next_line_4(int fd)
+char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE + 1];
 	t_gnl		d;

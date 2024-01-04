@@ -16,4 +16,10 @@ movie
   <img src="https://github.com/ziliolu/42_cub3D/blob/main/cub3d(1).gif" width="600" />
 </p>
 
+</p>
+<p align="center">
+  <img src="https://github.com/krammersf/4cub3D_fred/assets/127677607/0550bca5-4e91-40da-a074-6a26d8b5a221.gif" width="600" />
+</p>
+
+
 fred

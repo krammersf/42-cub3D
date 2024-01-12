@@ -2,6 +2,11 @@
 
 https://docs.google.com/spreadsheets/d/1qg7l79Bjfqt4-D8Ztr7GokgM5wAl61f4juJhe6RCElw/edit#gid=0
 
+
+
+![video1](https://github.com/krammersf/4cub3D_fred/assets/127677607/59ad873f-cb7e-4c5c-9602-588fa679a202)
+
+
 movie
 [Screencast from 04-01-2024 19:25:40.webm](https://github.com/krammersf/4cub3D_fred/assets/127677607/0550bca5-4e91-40da-a074-6a26d8b5a221)
 

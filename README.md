@@ -2,9 +2,10 @@
 
 https://docs.google.com/spreadsheets/d/1qg7l79Bjfqt4-D8Ztr7GokgM5wAl61f4juJhe6RCElw/edit#gid=0
 
+![video2](https://github.com/krammersf/4cub3D_fred/assets/127677607/7e644a9a-efb2-4133-838c-fedf11aa31f1)
 
 
-![video1](https://github.com/krammersf/4cub3D_fred/assets/127677607/59ad873f-cb7e-4c5c-9602-588fa679a202)
+
 
 
 movie

@@ -6,6 +6,7 @@ https://docs.google.com/spreadsheets/d/1qg7l79Bjfqt4-D8Ztr7GokgM5wAl61f4juJhe6RC
 
 
 
+![video6](https://github.com/krammersf/4cub3D_fred/assets/127677607/a73da684-6a1f-4f90-98d5-216e4ab5faf7)
 
 
 movie

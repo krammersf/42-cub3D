@@ -1,0 +1,31 @@
+EA ./mandatory/textures/east2.xpm
+NO	./mandatory/textures/north2.xpm	
+SO	./mandatory/textures/south2.xpm
+WE ./mandatory/textures/west2.xpm 
+
+DR ./bonus/textures/door.xpm
+
+
+
+
+ F 55,55,0
+C 155,255,255	
+
+
+   1
+  101
+  101
+  101
+  101
+  1D1
+ 10001
+1D000D1
+ 11011
+  1D1
+1110111111111111
+1000000000000001
+1000001D10000001
+100000D0D0000W01
+1000001D10000001
+1000000000000001
+1111111111111111

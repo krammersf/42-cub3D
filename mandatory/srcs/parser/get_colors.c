@@ -6,18 +6,27 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:08:54 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/02 14:29:18 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:39:45 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// converts the string to int and fills the t_rgb struct with RGB values
-void	fill_t_rgb(t_rgb *rgb, char *red, char *green, char *blue)
+/*
+  converts the string to a number and fills the t_rgb struct with RGB values
+  and checks if RGB lenght is valid
+*/
+int	fill_t_rgb_ckeck_rgb_size(t_rgb *rgb, char *red, char *green, char *blue)
 {
-	rgb->red = ft_atoi(red);
-	rgb->green = ft_atoi(green);
-	rgb->blue = ft_atoi(blue);
+	if (ft_strlen(red) <= 3 && ft_strlen(green) <= 3 && ft_strlen(blue) <= 3)
+	{
+		rgb->red = ft_atoi(red);
+		rgb->green = ft_atoi(green);
+		rgb->blue = ft_atoi(blue);
+		return (0);
+	}
+	else
+		return (1);
 }
 
 // define celing and floor colors
@@ -25,17 +34,19 @@ void	define_rgb_colors(t_map *map, char **rgb, char *str)
 {
 	if (ft_strncmp(str, "C", 1) == 0)
 	{
-		fill_t_rgb(&map->ceiling_colors, rgb[1], rgb[2], rgb[3]);
-		// printf("c:%d%d%d\n", map->ceiling_colors.red, map->ceiling_colors.green, map->ceiling_colors.blue);
+		if (fill_t_rgb_ckeck_rgb_size(&map->ceiling_colors, rgb[1], \
+			rgb[2], rgb[3]))
+			close_free("Invalid lenght in RGB ceiling colors.", rgb, map);
 		if (!is_valid_colors(&map->ceiling_colors))
-			close_free("Invalid celing colors.", rgb, map); // OK
+			close_free("Invalid ceiling colors.", rgb, map);
 	}
 	else if (ft_strncmp(str, "F", 1) == 0)
 	{
-		fill_t_rgb(&map->floor_colors, rgb[1], rgb[2], rgb[3]);
-		// printf("c:%d%d%d\n", map->floor_colors.red, map->ceiling_colors.green, map->ceiling_colors.blue);
+		if (fill_t_rgb_ckeck_rgb_size(&map->floor_colors, rgb[1], \
+			rgb[2], rgb[3]))
+			close_free("Invalid lenght in RGB floor colors.", rgb, map);
 		if (!is_valid_colors(&map->floor_colors))
-			close_free("Invalid floor color", rgb, map); // OK
+			close_free("Invalid floor color", rgb, map);
 	}
 }
 
@@ -54,14 +65,14 @@ void	check_floor_comma(t_map *map)
 	while (str[i])
 	{
 		if (str[i] == ',' && isspace(str[i + 1]))
-			perror_close_fd(msg1, map, map->fd);
+			error_close_fd(msg1, map, map->fd);
 		i++;
 	}
 	i = 0;
 	while (str[i])
 	{
 		if (isspace(str[i]) && str[i + 1] == ',')
-			perror_close_fd(msg2, map, map->fd);
+			error_close_fd(msg2, map, map->fd);
 		i++;
 	}
 }
@@ -81,14 +92,14 @@ void	check_ceiling_comma(t_map *map)
 	while (str[i])
 	{
 		if (str[i] == ',' && isspace(str[i + 1]))
-			perror_close_fd(msg1, map, map->fd);
+			error_close_fd(msg1, map, map->fd);
 		i++;
 	}
 	i = 0;
 	while (str[i])
 	{
 		if (isspace(str[i]) && str[i + 1] == ',')
-			perror_close_fd(msg2, map, map->fd);
+			error_close_fd(msg2, map, map->fd);
 		i++;
 	}
 }
@@ -105,17 +116,16 @@ void	check_elements(t_map *map, char *texture, char *c)
 	array = ft_split_set(texture, "\n, \t");
 	if (get_arr_size(array) != 4)
 		close_free("Invalid color feed. Has to have 3 elements \"RGB\".", \
-			array, map);//OK
+			array, map);
 	while (array[x])
 	{
 		y = 0;
 		while (array[x][y] && array[x][y] != '\n')
 			if (!ft_isdigit(array[x][y++]))
-				close_free("Invalid character in color definition.", array, map);// OK
+				close_free("Invalid character in color definition.", \
+					array, map);
 		x++;
 	}
-	// printf("ceiling_colors: @%d@%d%@d@\n", map->ceiling_colors.red, map->ceiling_colors.green, map->ceiling_colors.blue);
-	// printf("floor_colors: @%d@%d@%d@\n", map->floor_colors.red, map->floor_colors.green, map->floor_colors.blue);
 	define_rgb_colors(map, array, c);
 	free_arr1(array);
 }

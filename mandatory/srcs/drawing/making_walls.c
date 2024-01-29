@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:11:26 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 11:43:02 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:31:38 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,43 +18,23 @@ void	fps(t_game *game)
 	game->old_time = game->time;
 	game->time = get_actual_time();
 	game->frame_time = (game->time - game->old_time) / 1000.0;
-	if (game->tps <= 1.0) // (1.0)
+	if (game->tps <= 1.0)
 	{
 		game->fps++;
 		game->tps += game->frame_time;
 	}
 	else
 	{
-		printf("[\033[1;33mCUB3D\033[0m] FPS: %d\n", game->fps);
-		//printf("[cub3d] TPS: %d\n", game->fps);
 		game->fps = 0;
 		game->tps = 0.0;
 	}
 }
-/*
-This function is used to calculate and display the frames per second (FPS)
-in a game. It takes one parameter: a pointer to a `t_game` structure, which holds
-the state of the game.
 
-The function starts by storing the old time value (`game->time`) and then
-updating the current time value with the `get_actual_time` function. The frame
-time, which is the time it took to render the last frame, is then calculated by
-subtracting the old time from the current time and dividing the result by 1000.0
-to convert it from milliseconds to seconds.
-
-Next, the function checks if the total time spent rendering (`game->tps`)
-(tps -> time per second) is less than or equal to 1.0 second. If it is, the
-function increments the frame counter (`game->fps`) and adds the frame time to
-the total time spent rendering.
-
-If the total time spent rendering is more than 1.0 second, the function prints
-the number of frames rendered in the last second (the FPS) and then resets the
-frame counter and the total time spent rendering.
+/* 
+  Determines the next horizontal or vertical boundary that the ray intersects,
+  checks if the ray has hit a wall, and calculates the distance to the wall.
+  Performs a DDA algorithm.
 */
-
-// It determines the next horizontal or vertical boundary that the ray
-// intersects, checks if the ray has hit a wall, and calculates the distance to
-// the wall.
 void	check_hit(t_game *game)
 {
 	while (game->hit == '0')
@@ -79,52 +59,20 @@ void	check_hit(t_game *game)
 	else
 		game->perp_wall_dist = (game->side_dist_y - game->delta_dist_y);
 }
+
 /*
-This function is part of a raycasting algorithm, which is commonly used in
-3D game engines to determine what is visible to the player.
-
-The function starts with a loop that continues as long as `game->hit` is '0'.
-Inside this loop, the function checks if `game->side_dist_x` is less than
-`game->side_dist_y`. If it is, the function increments `game->side_dist_x`
-by `game->delta_dist_x`, increments `game->map_x` by `game->step_x`, and sets
-`game->side` to '0'. Otherwise, it increments `game->side_dist_y` by
-`game->delta_dist_y`, increments `game->map_y` by `game->step_y`, and sets
-`game->side` to '1'. 
---> This part of the code is responsible for determining the next horizontal
-or vertical boundary that the ray intersects.
-
-The function then checks if the character at the current map position in
-`game->map_ptr->world_map` is not '0'. If it's not, the function sets
-`game->hit` to '1'. 
---> This part of the code is responsible for checking if the ray has hit a
-wall.
-
-After the loop, the function checks if `game->side` is '0'. If it is, the
-function calculates the perpendicular distance to the wall by subtracting
-`game->delta_dist_x` from `game->side_dist_x` and assigns the result to
-`game->perp_wall_dist`. Otherwise, it calculates the perpendicular distance
-to the wall by subtracting `game->delta_dist_y` from `game->side_dist_y` and
-assigns the result to `game->perp_wall_dist`.
---> This part of the code is responsible for calculating the distance to the
-wall, which is used to determine how tall the wall should be drawn.
-
-It determines the next horizontal or vertical boundary that the ray
-intersects, checks if the ray has hit a wall, and calculates the distance to
-the wall.
+  Calculates the properties of each vertical strip of the screen that needs
+  to be drawn, including the height of the line, the start and end points
+  for drawing the line, the texture coordinates, and the step size for moving
+  through the texture.
 */
-
-// This function calculates the properties of each vertical strip of the screen
-// that needs to be drawn, including the height of the line, the start and end
-// points for drawing the line, the texture coordinates, and the step size for
-// moving through the texture.
 void	calculate_walls(t_game *game)
 {
-	game->pitch = 0;
 	game->line_height = (int)(SCREEN_HEIGHT / game->perp_wall_dist);
-	game->draw_start = -game->line_height / 2 + SCREEN_HEIGHT / 2 + game->pitch;
+	game->draw_start = -game->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (game->draw_start < 0)
 		game->draw_start = 0;
-	game->draw_end = game->line_height / 2 + SCREEN_HEIGHT / 2 + game->pitch;
+	game->draw_end = game->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (game->draw_end >= SCREEN_HEIGHT)
 		game->draw_end = SCREEN_HEIGHT - 1;
 	if (game->side == '0')
@@ -140,72 +88,18 @@ void	calculate_walls(t_game *game)
 	if (game->side == '1' && game->ray_dir_y < 0)
 		game->texture_x = TEX_WIDTH - game->texture_x - 1;
 	game->map_ptr->step = 1.0 * TEX_HEIGHT / game->line_height;
-	game->map_ptr->tex_pos = (game->draw_start - game->pitch - \
+	game->map_ptr->tex_pos = (game->draw_start - \
 		(double)SCREEN_HEIGHT / 2 + (double)game->line_height / 2) * \
 			game->map_ptr->step;
 }
+
 /*
-This function is part of a 3D game engine, specifically a part of the rendering
-process that calculates the properties of each vertical strip (or "wall") of
-the screen that needs to be drawn.
-
-The function starts by setting `game->pitch` to 0. This is be used to adjust
-the vertical viewing angle, but since it's always set to 0, it doesn't have
-any effect in this code.
-
-Next, the function calculates the height of the line to be drawn on the screen,
-which represents a vertical strip of a wall in the 3D world. This is done by
-dividing the screen height by the perpendicular distance to the wall
-(`game->perp_wall_dist`), which was calculated in a previous step of the
-raycasting algorithm.
-
-The function then calculates the start and end points for drawing the line on
-the screen. The start point (`game->draw_start`) is calculated by subtracting
-half the line height from the middle of the screen and adding the pitch. If
-the start point is less than 0, it's set to 0 to ensure that it doesn't go off
-the top of the screen. The end point (`game->draw_end`) is calculated in a
-similar way, but if it's greater than or equal to the screen height, it's set
-to one less than the screen height to ensure that it doesn't go off the bottom
-of the screen.
-
-The line `game->map_ptr->wall_x -= floor((game->map_ptr->wall_x));` is
-subtracting the floor value of `game->map_ptr->wall_x` from
-`game->map_ptr->wall_x` itself. The `floor` function rounds down the value to
-the nearest whole number. This operation effectively keeps only the fractional
-part of `game->map_ptr->wall_x`, which represents the exact hit point on the
-wall in the map where the ray intersects.
-
-The line `game->texture_x = (int)(game->map_ptr->wall_x * (double)TEX_WIDTH);`
-is calculating the x-coordinate on the texture to be mapped on the wall. It
-multiplies the fractional part of `game->map_ptr->wall_x` (which is between 0
-and 1) by the texture width (`TEX_WIDTH`). This gives the exact horizontal
-position on the texture that corresponds to the hit point on the wall. The
-result is then cast to an integer and stored in `game->texture_x`. This value
-will be used to draw the correct part of the texture on the screen.
-
-The function then calculates the exact horizontal position of the wall that
-was hit by the ray. This is done differently depending on whether the ray hit
-a wall on the north/south side (`game->side` is '0') or the east/west side
-(`game->side` is '1'). The fractional part of this position is then used to
-determine the x-coordinate of the texture that should be used to draw the wall
-(`game->texture_x`).
-
-The function then adjusts the texture x-coordinate if necessary. If the ray
-was moving to the right and hit a north/south wall, or if the ray was moving
-up and hit an east/west wall, the texture x-coordinate is flipped horizontally.
-This is done to ensure that the textures are drawn correctly.
-
-Finally, the function calculates the step size for moving through the texture
-vertically (`game->map_ptr->step`) and the initial texture y-coordinate
-(`game->map_ptr->tex_pos`). These are used to determine which part of the
-texture should be drawn for each pixel of the line on the screen.
+  Draws a vertical strip of the screen by looping through each pixel in
+  the line on the screen, determining which texture to use based on the
+  direction of the ray and the side of the wall that was hit, getting the
+  color of the appropriate pixel from the texture, and drawing the pixel on
+  the screen.
 */
-
-// This function draws a vertical strip of the screen by looping through each
-// pixel in the line on the screen, determining which texture to use based on
-// the direction of the ray and the side of the wall that was hit, getting the
-// color of the appropriate pixel from the texture, and drawing the pixel on
-// the screen.
 void	draw_walls(t_game *game, int *x)
 {
 	int	y;
@@ -231,36 +125,3 @@ void	draw_walls(t_game *game, int *x)
 		y++;
 	}
 }
-/*
-This function is responsible for drawing a vertical strip (or "walls") of the
-screen, which represents a part of a wall in the 3D world.
-
-The function starts by setting y to game->draw_start, which is the starting point
-for drawing the line on the screen. This value was calculated in a previous step
-of the rendering process.
-
-The function then enters a loop that continues as long as y is less than or equal
-to game->draw_end, which is the ending point for drawing the line on the screen.
-Inside this loop, the function calculates the y-coordinate of the texture to be
-used to draw the wall (tex_y). This is done by taking the bitwise AND of
-game->map_ptr->tex_pos and TEX_HEIGHT - 1. The game->map_ptr->tex_pos value is
-then incremented by game->map_ptr->step, which is the step size for moving
-through the texture vertically.
-
-The function then checks the direction of the ray and the side of the wall that
-was hit to determine which texture to use. If the ray was moving to the right
-and hit a north/south wall, the function uses the texture for the south side of
-the wall. If the ray was moving to the left and hit a north/south wall, the
-function uses the texture for the north side of the wall. If the ray was moving
-down and hit an east/west wall, the function uses the texture for the east side
-of the wall. If the ray was moving up and hit an east/west wall, the function
-uses the texture for the west side of the wall.
-
-The function then calls ft_pixel_put to draw a pixel on the screen at the
-position (*x, y) with the color obtained from the appropriate texture at the
-position (game->texture_x, tex_y). The ft_pixel_get function is used to get the
-color of a pixel from a texture.
-
-Finally, the function increments y to move to the next pixel in the line on
-the screen.
-*/

@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:23:39 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/02 17:35:29 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/28 11:05:57 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*get_texture(char *line)
 	size = ft_strlen(line);
 	i = 0;
 	j = 0;
-	while (i < size - 1 && (line[i] == ' '))// || line[i] == '\t'))
+	while (i < size - 1 && (line[i] == ' '))
 		i++;
 	if (line[i + 1] == '\n' || line[i + 1] == '\0')
 		return (NULL);
@@ -64,14 +64,11 @@ void	get_elements(t_map *map)
 	while (map->get_line != NULL)
 	{
 		map->line_nbr++;
-		//printf("line_nbr: %d\n", map->line_nbr);//DEBUG
-		//printf("map->get_line_FIRTS: %s", map->get_line);//DEBUG
 		line_arr = ft_split_set(map->get_line, " \t");
 		if (ft_strncmp("\n", line_arr[0], 1) != 0)
 		{
-			printf("line_arr[0]: %s\n", line_arr[0]);//DEBUG
 			check_elem_file_is_ok(line_arr[0], line_arr, map);
-			get_elements_textures(map, line_arr);//modificado
+			get_elements_textures(map, line_arr);
 			get_elements_colors_textures(map, line_arr);
 			if (map->north_texture && map->south_texture && map->west_texture
 				&& map->east_texture && map->ceiling_texture
@@ -82,13 +79,8 @@ void	get_elements(t_map *map)
 			}
 		}
 		free_total(line_arr, map->get_line);
-		//if(!map->get_line)
-		//	free(map->get_line);
-		map->get_line = get_next_line(map->fd);	
-		//printf("map->get_line__LAST: %s\n", map->get_line);//DEBUG
+		map->get_line = get_next_line(map->fd);
 	}
-	//	free(map->get_line);//PROBLEM
+	free(map->get_line);
 	check_textures_paths(map);
-	//if (!map->ceiling_texture || !map->floor_texture)
-	//	perror_close("Problem reading colors in ceiling / floor.", map);//nao reproduzir este erro
 }

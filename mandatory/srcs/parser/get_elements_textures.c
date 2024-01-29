@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:23:39 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/02 17:22:29 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:39:50 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	check_texture(t_map *map, char **texture, char **dir, char **line_arr)
 		&& (!ft_strncmp(dir[0], line_arr[0], 2)))
 	{
 		free_arr1(line_arr);
-		perror_close_fd("Repeated elements.", map, map->fd);//OK
+		free(map->get_line);
+		error_close_fd("Repeated elements.", map, map->fd);
 	}
 }
 

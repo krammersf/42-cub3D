@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 18:23:47 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/02 14:33:27 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:38:39 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_begin_strlen(char *line)
 	return (i);
 }
 
-// find first '0' in 2d array
+//find first '0' in 2d array
 int	find_first_zero(t_map *map, char **map_copy)
 {
 	int	x;
@@ -62,23 +62,20 @@ int	find_first_zero(t_map *map, char **map_copy)
 	y = 0;
 	map->map_copy_x = 0;
 	map->map_copy_y = 0;
-	while (x < (map->map_end - map->map_start))
+	while (y < (map->map_end - map->map_start))
 	{
-		while (map_copy[x][y])
+		while (map_copy[y][x])
 		{
-			if (map_copy[x][y] == '0')
+			if (map_copy[y][x] == '0')
 			{
-				//printf("Encontrou: \n");//	
 				map->map_copy_x = x;
 				map->map_copy_y = y;
-				//printf("map_copy_x: %d\n", map->map_copy_x);//
-				//printf("map_copy_y: %d\n", map->map_copy_y);//
 				return (0);
 			}
-			y++;
+			x++;
 		}
-		x++;
-		y = 0;
+		y++;
+		x = 0;
 	}
 	return (1);
 }
@@ -86,12 +83,15 @@ int	find_first_zero(t_map *map, char **map_copy)
 // checks flood fill algorithm recursively
 void	check_flood_fill(t_map *map, char **array, int y, int x)
 {
-	if (y < (map->map_start - map->map_start)
-		|| y >= (map->map_end - map->map_start - 0)
-		|| x < ft_begin_strlen(array[y])
-		|| x >= (int)ft_strlen(array[y])
+	if (y < 0 || y >= (map->map_end - map->map_start)
+		|| x < 0 || x >= (int)ft_strlen(array[y])
 		|| array[y][x] != '0')
 	{
+		if (y < 0 || x < 0 || y >= (map->map_end - map->map_start))
+		{
+			map->inside_checked = 1;
+			return ;
+		}
 		if (array[y][x] != '0' && array[y][x] != '1' && array[y][x] != 'X')
 			map->inside_checked = 1;
 		return ;
@@ -103,8 +103,10 @@ void	check_flood_fill(t_map *map, char **array, int y, int x)
 	check_flood_fill(map, array, y, x - 1);
 }
 
-// chekcs if the map is surrounded by walls and there is a valid
-// path for the player
+/*
+  chekcs if the map is surrounded by walls and there is a valid
+  path for the player
+*/
 void	check_map_integrity(t_map *map)
 {
 	char	**map_copy;
@@ -115,9 +117,13 @@ void	check_map_integrity(t_map *map)
 	{
 		if (find_first_zero(map, map_copy) == 1)
 			break ;
-		check_flood_fill(map, map_copy, map->map_copy_x, map->map_copy_y);
+		check_flood_fill(map, map_copy, map->map_copy_y, map->map_copy_x);
 	}
 	free_arr(map_copy, map);
 	if (map->inside_checked == 1)
-		perror_close("Map integrity fail.", map);//OK
+	{
+		printf("\033[1;31mError!\n\033[1;33mMap integrity failed. ");
+		printf("The map is not surrounded by walls.\n");
+		close_window(map->game_ptr);
+	}
 }

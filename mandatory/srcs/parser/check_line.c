@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:49:45 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/02 17:29:36 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:38:07 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	check_elem_file_is_ok(char *line, char **arr, t_map *map)
 	if (!check_elem_file(line))
 	{
 		free_arr1(arr);
-		perror_close_fd("Check map elements. Possible wrong element name.", \
-			map, map->fd);// OK
+		free(map->get_line);
+		error_close_fd("Check map elements. Possible wrong element name.", \
+			map, map->fd);
 	}
 }

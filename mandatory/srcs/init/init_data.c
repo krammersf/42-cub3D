@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:42:45 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 12:14:57 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:47:25 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	init_game(t_game *game, struct s_map *map_ptr, t_mlx *m)
 void	init_t_map(t_map *map, t_game *game)
 {
 	map->fd = 0;
-	map->ttl_nbr_lines = 0;
+	map->total_nbr_lines = 0;
 	map->extension = NULL;
 	map->get_line = NULL;
 	map->north_texture = NULL;

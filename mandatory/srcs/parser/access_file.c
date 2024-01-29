@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:23:18 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/02 13:29:54 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:37:39 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,42 @@ void	access_path(t_map *map, char *texture)
 	int	len;
 
 	if (texture == NULL)
-		perror_close_fd("Null texture in the map.", map, map->fd);//percebo a logica nao consigo reproduzir o erro
+		error_close_fd("Null texture in the map.", map, map->fd);
 	else
 	{
 		fd = open(texture, O_RDONLY);
 		if (fd < 0)
-			perror_close("Wrong texture path in map.", map);//OK
+			error_close_fd("Wrong texture path in map.", map, map->fd);
 		close(fd);
 		len = ft_strlen(texture);
 		if (len < 4 || !ft_strnstr(texture + len - 4, ".xpm", 4))
-			perror_close("Texture not a .xpm file.", map);//OK
+			error_close_fd("Texture not a .xpm file.", map, map->fd);
 	}
 }
 
-// prints eror msg and closes the window
-void	perror_close(char *msg, t_map *map)
+// chekcs ac elements, the map extension and the path 
+int	check_input(int ac, char *path_str, t_map *map)
 {
-	printf("\033[1;31mError!\n\033[1;33m%s\033[0m\n", msg);//OK
-	close_window(map->game_ptr);
-}
+	int		temp_fd;
 
-// closes fd and prints eror msg and closes the window
-void	perror_close_fd(char *msg, t_map *map, int fd)
-{
-	close(fd);
-	printf("\033[1;31mError!\n\033[1;33m%s\033[0m\n", msg);//OK
-	close_window(map->game_ptr);
+	if (ac != 2)
+	{
+		printf("\033[1;31mError!\n\033[1;33mUsage: \
+			./cube3d <map_path>\033[0m\n");
+		exit(EXIT_FAILURE);
+	}
+	map->map_path = path_str;
+	if (!check_map_extension(map, path_str))
+	{
+		printf("\033[1;31mError!\n\033[1;33mWrong file extension.\033[0m\n");
+		exit(EXIT_FAILURE);
+	}
+	temp_fd = open(map->map_path, O_RDONLY);
+	if (temp_fd == -1)
+	{
+		printf("\033[1;31mError!\n\033[1;33mCannot open file.\033[0m\n");
+		exit(EXIT_FAILURE);
+	}
+	close(temp_fd);
+	return (1);
 }

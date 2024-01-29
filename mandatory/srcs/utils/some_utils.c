@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_array_size.c                                   :+:      :+:    :+:   */
+/*   some_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:16:44 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 12:02:50 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:09:41 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_arr_size(char **arr)
 	return (size);
 }
 
-bool	is_direction(char c)
+bool	is_player(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (true);

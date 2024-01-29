@@ -5,81 +5,72 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 18:23:47 by fde-carv          #+#    #+#             */
-/*   Updated: 2023/12/31 11:24:57 by fde-carv         ###   ########.fr       */
+/*   Created: 2023/12/09 18:23:54 by fde-carv          #+#    #+#             */
+/*   Updated: 2024/01/27 13:48:16 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// player start position if is N or S
-void	set_start_ns(char c, t_game *game)
+// checks if the map file is empty if not count the lines
+void	get_total_nbr_lines(t_map *map)
 {
-	if (c == 'N')
-	{
-		game->dir_x = -1;
-		game->dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = 0.66;
-	}
-	if (c == 'S')
-	{
-		game->dir_x = 1;
-		game->dir_y = 0;
-		game->plane_x = 0;
-		game->plane_y = -0.66;
-	}
-}
+	int		fd;
+	int		has_content;
+	char	*line;
 
-// player start position if is N or S or W or E
-void	set_start(double x, double y, char c, t_map *map)
-{
-	t_game	*game;
-
-	game = map->game_ptr;
-	game->pos_x = x + 0.49;
-	game->pos_y = y + 0.49;
-	set_start_ns(c, game);
-	if (c == 'W')
+	fd = 0;
+	fd = open(map->map_path, O_RDONLY);
+	has_content = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
-		game->dir_x = 0;
-		game->dir_y = -1;
-		game->plane_x = -0.66;
-		game->plane_y = 0;
+		if (ft_strlen(line) > 1)
+			has_content = 1;
+		map->total_nbr_lines++;
+		free(line);
+		line = get_next_line(fd);
 	}
-	if (c == 'E')
-	{
-		game->dir_x = 0;
-		game->dir_y = 1;
-		game->plane_x = 0.66;
-		game->plane_y = 0;
-	}
+	close(fd);
+	if (has_content == 0)
+		error_close("Empty file.", map);
 }
 
 // checks if the char is a valid char
 bool	is_valid_char(char c)
 {
-	if (c == '0' || c == '1' || is_direction(c)
-			|| c == '\n' || c == ' ' || c == '\t')
+	if (c == '0' || c == '1' || is_player(c)
+		|| c == '\n' || c == ' ')
 		return (true);
 	return (false);
 }
 
-// get the map to an array line by line
-void	get_map_to_array_while_get_line(t_map *map, int x, int y)
+void	check_invalid_char_error(t_map *map, int y)
+{
+	printf("\033[1;31mError!\n\033[1;33mInvalid char in map. ");
+	printf("The invalid char is: \'%c\'.\033[0m\n", map->get_line[y]);
+	free(map->get_line);
+	close(map->fd);
+	close_window(map->game_ptr);
+}
+
+/*
+  get the map to an array line by line, sets the player position
+  if it exists and checks if the map has invalid chars
+*/
+void	get_map_to_array_cheks_player_char(t_map *map, int x, int y)
 {
 	while (map->get_line[y])
 	{
 		if (!is_valid_char(map->get_line[y]))
-		{
-			printf("\033[1;31mError!\n\033[1;33mInvalid char in map. ");//OK
-			printf("The invalid char is: \'%c\'.\033[0m\n", map->get_line[y]);//OK
-			close_window(map->game_ptr);
-		}
-		if (is_direction(map->get_line[y]))
+			check_invalid_char_error(map, y);
+		if (is_player(map->get_line[y]))
 		{
 			if (map->has_player == 1)
-				perror_close("More than one player.", map);//OK
+			{
+				free(map->get_line);
+				error_close_fd("More than one player.", map, map->fd);
+			}
 			map->world_map[x][y] = '0';
 			set_start(x, y, map->get_line[y], map);
 			map->has_player = 1;
@@ -111,11 +102,12 @@ void	get_map_to_array(t_map *map)
 		map->world_map[i] = ft_calloc((ft_strlen(map->get_line)
 					+ 1), sizeof(char));
 		j = 0;
-		get_map_to_array_while_get_line(map, i, j);
+		get_map_to_array_cheks_player_char(map, i, j);
 		free(map->get_line);
 		map->get_line = get_next_line(map->fd);
 	}
+	free(map->get_line);
 	close(map->fd);
 	if (map->has_player == 0)
-		perror_close("No player found.", map);//OK
+		error_close("No player found.", map);
 }

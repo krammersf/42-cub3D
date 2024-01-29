@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: fernacar <fernacar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 11:03:31 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/02 12:05:37 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:14:30 by fernacar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void		*ft_memccpy(void *dst, const void *src, int c, size_t n);
 size_t		ft_strlen(char *str);
 size_t		ft_strlen_2d(char **s); //*
 char		*ft_strstr(char *haystack, char *needle); //*
+char		*ft_strcpy(char *dst, const char *src);
 size_t		ft_strlcpy(char *dest, char *src, size_t n);
 size_t		ft_strlcat(char *dest, char *src, size_t n);
 char		*ft_strchr(char *s, int c);
@@ -142,7 +143,7 @@ void		ft_putnbr(int n); //*
 void		ft_split_free(char **s); //*
 char		**ft_split_set(char *str, char *charset); //*
 size_t		ft_strclen(const char *s, char c); //*
-void		fill(char **tab, t_point size, t_point cur, char to_fill);
+void		fill(char **tab, t_point size, t_point cur, char to_fill); //*
 
 /*
 ** ft_printf functions
@@ -159,21 +160,6 @@ int			param_hex(unsigned int num, char c);
 ** get_next_line function
 */
 
-char		*read_from(int fd, char *read_line);
-char		*get_next_line(int fd);
-char		*ft_strjoin_gnl2(char *s1, char *s2);
-char		*ft_get_line(char *text);
-char		*remain_text(char *text);
-
-
-
-
-
-char		*get_next_line_4(int fd);
-
-char		*get_next_line_2(int fd);
-char		*ft_strjoin_gnl(char *static_buffer, char *temp);
-
 char		*get_next_line(int fd);
 char		*get_keep(char *buffer);
 char		*get_line(char *buffer);
@@ -181,5 +167,8 @@ int			strlen_at(char *s, char c);
 int			have_newline(char *s);
 char		*ft_strncpy2(char *dst, char *src, int n);
 char		*ft_strjoin2(char *prev, char *curr);
+
+char		*get_next_line_2(int fd);
+char		*ft_strjoin_gnl(char *s1, char *s2);
 
 #endif // LIBFT_H;

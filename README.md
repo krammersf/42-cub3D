@@ -10,11 +10,12 @@ movie 1
 
 movie 2
 
+![video8](https://github.com/krammersf/4cub3D_fred/assets/127677607/dc6c8cd3-d467-4985-aaa1-b0a1f879dc98)
 
 
 movie 3
 
-![video7](https://github.com/krammersf/4cub3D_fred/assets/127677607/ff156ab2-cbe2-45fc-aacb-dbe8eccea98e)
+
 
 
 </p>

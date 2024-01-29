@@ -1,12 +1,10 @@
 # cub3D
 
-# cub3D
-
 This project is inspired by the game Wolfenstein 3D. The goal of the project is to create a simple graphic engine capable of rendering a 3D maze using the Raycasting technique.
 
 This project was developed in colaboration with ferncar --> [teroVF](https://github.com/teroVF).
 
-File
+Files to support parser
 
 https://docs.google.com/spreadsheets/d/1qg7l79Bjfqt4-D8Ztr7GokgM5wAl61f4juJhe6RCElw/edit#gid=0
 

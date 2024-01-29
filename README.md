@@ -2,7 +2,12 @@
 
 https://docs.google.com/spreadsheets/d/1qg7l79Bjfqt4-D8Ztr7GokgM5wAl61f4juJhe6RCElw/edit#gid=0
 
-![video2](https://github.com/krammersf/4cub3D_fred/assets/127677607/7e644a9a-efb2-4133-838c-fedf11aa31f1)
+
+</p>
+<p align="center">
+  movie 2
+  ![video2](https://github.com/krammersf/4cub3D_fred/assets/127677607/7e644a9a-efb2-4133-838c-fedf11aa31f1)
+</p>
 
 </p>
 <p align="center">

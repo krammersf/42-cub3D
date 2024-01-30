@@ -2,7 +2,7 @@
 
 This project is inspired by the game Wolfenstein 3D. The goal of the project is to create a simple graphic engine capable of rendering a 3D maze using the Raycasting technique.
 
-This project was developed in colaboration with FMihguel95 --> [fernacar](https://github.com/FMiguel95).
+This project was developed in colaboration with FMiguel95 --> [fernacar](https://github.com/FMiguel95).
 
 Files to support parser
 

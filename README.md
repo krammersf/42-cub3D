@@ -15,7 +15,7 @@ movie 1
 movie 2
 
 ![video10](https://github.com/krammersf/4cub3D_fred/assets/127677607/66ce046c-dc95-405f-a8cd-59ca64e4addd)
-
+https://github.com/FMiguel95
 movie 3
 
 ![video8](https://github.com/krammersf/4cub3D_fred/assets/127677607/dc6c8cd3-d467-4985-aaa1-b0a1f879dc98)
@@ -107,16 +107,3 @@ C 15,15,15
 
 ## Grade: 125/100
 
-
-
-
-
-
-
-
-
-
-
-
-
-fred

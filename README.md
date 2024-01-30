@@ -2,7 +2,7 @@
 
 This project is inspired by the game Wolfenstein 3D. The goal of the project is to create a simple graphic engine capable of rendering a 3D maze using the Raycasting technique.
 
-This project was developed in colaboration with ferncar --> [teroVF](https://github.com/teroVF).
+This project was developed in colaboration with ferancar --> [fernacar](https://github.com/FMiguel95).
 
 Files to support parser
 
@@ -82,7 +82,7 @@ C 15,15,15
 - `C`: Ceiling color in RGB format.
 - The map is represented using the letters `0` (empty space) and `1` (wall), and the spawn point with the orientation `N`, `S`, `E` or `W`. The map must be surrounded by walls.
 
-## Controls Mandatory
+## Controls MANDATORY
 
 - W: Move forward.
 - S: Move backward.
@@ -91,18 +91,18 @@ C 15,15,15
 - Arrow keys: Rotate player's vision.
 - ESC: Exit game.
 
-## Controls Bonus
+## Controls BONUS
 
 - W: Move forward.
 - S: Move backward.
 - A: Move left.
 - D: Move right.
 - Arrow keys: Rotate player's vision.
+- ESC: Exit game.
 - L: Change Wall.
 - SPACE: Open and close doors.
 - E: Shoot pistol.
 - K: Make random color efect and change wall color. 
-- ESC: Exit game.
 - MOUSE: One click in the window to control rotation with mouse, ESC to relese the control.
 
 ## Grade: 125/100

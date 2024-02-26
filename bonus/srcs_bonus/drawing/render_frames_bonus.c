@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 13:05:09 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/29 17:00:39 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:02:22 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void	render_frames_2(t_game *game, int *x)
 	calculate_walls(game);
 	draw_walls(game, x);
 	draw_walls2(game, x);
-	draw_walls3(game, x);
-	draw_walls4(game, x);
+	//draw_walls3(game, x);
+	//draw_walls4(game, x);
 }

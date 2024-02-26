@@ -6,7 +6,7 @@
 /*   By: fde-carv <fde-carv@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 12:18:52 by fde-carv          #+#    #+#             */
-/*   Updated: 2024/01/29 17:34:11 by fde-carv         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:05:31 by fde-carv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	draw_walls(t_game *game, int *x)
 		if (game->hit == 'D')
 			ft_pixel_put(game->mini_ptr, *x, y, (unsigned int)
 				ft_pixel_get(&game->txt_ptr[door], game->texture_x, tex_y));
-		else if (game->hit == 'f' && game->ray_dir_x > 0)
+		else if (game->hit == 'f')
 			wall_change(game, x, y, tex_y);
 		else if (game->hit == 'b')
 			time_change(game, x, y, tex_y);
@@ -81,52 +81,52 @@ void	draw_walls(t_game *game, int *x)
 	}
 }
 
-void	draw_walls3(t_game *game, int *x)
-{
-	int	y;
-	int	tex_y;
+// void	draw_walls3(t_game *game, int *x)
+// {
+// 	int	y;
+// 	int	tex_y;
 
-	y = game->draw_start;
-	if (game->hit == 'f')
-	{
-		while (y <= game->draw_end)
-		{
-			tex_y = (int)game->map_ptr->tex_pos & (TEX_HEIGHT - 1);
-			game->map_ptr->tex_pos += game->map_ptr->step;
-			if (game->side == '0' && game->ray_dir_x > 0)
-				wall_change(game, x, y, tex_y);
-			else if (game->side == '0' && game->ray_dir_x < 0)
-				wall_change(game, x, y, tex_y);
-			else if (game->side == '1' && game->ray_dir_y > 0)
-				wall_change(game, x, y, tex_y);
-			else if (game->side == '1' && game->ray_dir_y < 0)
-				wall_change(game, x, y, tex_y);
-			y++;
-		}
-	}
-}
+// 	y = game->draw_start;
+// 	if (game->hit == 'f')
+// 	{
+// 		while (y <= game->draw_end)
+// 		{
+// 			tex_y = (int)game->map_ptr->tex_pos & (TEX_HEIGHT - 1);
+// 			game->map_ptr->tex_pos += game->map_ptr->step;
+// 			if (game->side == '0' && game->ray_dir_x > 0)
+// 				wall_change(game, x, y, tex_y);
+// 			else if (game->side == '0' && game->ray_dir_x < 0)
+// 				wall_change(game, x, y, tex_y);
+// 			else if (game->side == '1' && game->ray_dir_y > 0)
+// 				wall_change(game, x, y, tex_y);
+// 			else if (game->side == '1' && game->ray_dir_y < 0)
+// 				wall_change(game, x, y, tex_y);
+// 			y++;
+// 		}
+// 	}
+// }
 
-void	draw_walls4(t_game *game, int *x)
-{
-	int	y;
-	int	tex_y;
+// void	draw_walls4(t_game *game, int *x)
+// {
+// 	int	y;
+// 	int	tex_y;
 
-	y = game->draw_start;
-	if (game->hit == 'b')
-	{
-		while (y <= game->draw_end)
-		{
-			tex_y = (int)game->map_ptr->tex_pos & (TEX_HEIGHT - 1);
-			game->map_ptr->tex_pos += game->map_ptr->step;
-			if (game->side == '0' && game->ray_dir_x > 0)
-				time_change(game, x, y, tex_y);
-			else if (game->side == '0' && game->ray_dir_x < 0)
-				time_change(game, x, y, tex_y);
-			else if (game->side == '1' && game->ray_dir_y > 0)
-				time_change(game, x, y, tex_y);
-			else if (game->side == '1' && game->ray_dir_y < 0)
-				time_change(game, x, y, tex_y);
-			y++;
-		}
-	}
-}
+// 	y = game->draw_start;
+// 	if (game->hit == 'b')
+// 	{
+// 		while (y <= game->draw_end)
+// 		{
+// 			tex_y = (int)game->map_ptr->tex_pos & (TEX_HEIGHT - 1);
+// 			game->map_ptr->tex_pos += game->map_ptr->step;
+// 			if (game->side == '0' && game->ray_dir_x > 0)
+// 				time_change(game, x, y, tex_y);
+// 			else if (game->side == '0' && game->ray_dir_x < 0)
+// 				time_change(game, x, y, tex_y);
+// 			else if (game->side == '1' && game->ray_dir_y > 0)
+// 				time_change(game, x, y, tex_y);
+// 			else if (game->side == '1' && game->ray_dir_y < 0)
+// 				time_change(game, x, y, tex_y);
+// 			y++;
+// 		}
+// 	}
+// }
